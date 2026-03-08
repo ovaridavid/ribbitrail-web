@@ -19,27 +19,28 @@
         }
 
         body {
-            /* Deeper Base Plum Color for contrast */
             background-color: #5c203b; 
             color: #ffffff;
-            min-height: 100vh;
+            min-height: 100vh; /* Fallback */
+            min-height: 100dvh; /* Modern mobile height */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             text-align: center;
             padding: 20px;
-            overflow: hidden;
+            overflow-x: hidden; /* Fixes the refresh jump */
             position: relative;
             z-index: 1;
         }
 
         /* --- Vibrant, Multi-Toned Breathing Background --- */
         .bg-glow {
-            position: absolute;
+            position: fixed; /* Locks animations to viewport to prevent layout shift */
             border-radius: 50%;
             z-index: -1;
             filter: blur(60px);
+            pointer-events: none; /* Ensures invisible shapes don't block clicks */
         }
 
         .glow-1 {
@@ -97,15 +98,16 @@
             align-items: center;
             width: 100%;
             max-width: 500px;
-            margin-top: 50px;
+            /* Margin removed for perfect vertical centering */
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 3.8rem; 
             font-weight: 700;
             margin-bottom: 0.2rem;
             text-shadow: 0 4px 15px rgba(0,0,0,0.2);
             letter-spacing: -1.5px; 
+            line-height: 1.1;
         }
 
         h2 {
@@ -127,7 +129,7 @@
 
         /* Enhanced Liquid Glassmorphism Inputs & Buttons */
         input[type="email"], button {
-            width: 100%;
+            width: 100%; 
             padding: 16px 25px;
             font-size: 1.05rem;
             color: #ffffff;
@@ -196,14 +198,14 @@
         }
 
         p.context-text {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 400;
             margin-top: 15px;
-            opacity: 0.85;
+            opacity: 0.9;
             line-height: 1.6;
             margin-left: auto;
             margin-right: auto;
-            max-width: 350px;
+            max-width: 380px;
         }
 
         /* --- Footer Section (App Store + Socials) --- */
@@ -259,7 +261,7 @@
         <h1>Ribbitrail</h1>
         <h2>Wander Beyond the Trails</h2>
         
-        <form id="waitlist-form" action="https://ribbitrail.us2.list-manage.com/subscribe/post?u=c2b69f2abaa90402275731ead&amp;id=62060cfa55&amp;f_id=00cc94e0f0" method="post" target="_blank">
+        <form id="waitlist-form" action="https://ribbitrail.us2.list-manage.com/subscribe/post?u=c2b69f2abaa90402275731ead&amp;id=62060cfa55&amp;f_id=00cc94e0f0" method="post">
             
             <input type="email" name="EMAIL" id="email-input" placeholder="Enter your email" required>
             
@@ -274,42 +276,61 @@
             </div>
         </form>
 
-        <p class="context-text">Subscribe to be the first to know the moment the app becomes available to download.</p>
+        <p class="context-text">Subscribe to be informed promptly when Ribbitrail becomes available for download.</p>
     </div>
 
     <div class="footer-section">
         <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1276560000" alt="Download on the App Store" class="app-store-img">
         
         <div class="social-footer">
-            <a href="https://twitter.com/yourhandle" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://threads.net/@yourhandle" target="_blank" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
-            <a href="https://bsky.app/profile/yourhandle" target="_blank" aria-label="BlueSky"><i class="fa-brands fa-bluesky"></i></a>
-            <a href="https://youtube.com/@yourhandle" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://tiktok.com/@yourhandle" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://pinterest.com/yourhandle" target="_blank" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
-            <a href="https://tumblr.com/blog/yourhandle" target="_blank" aria-label="Tumblr"><i class="fa-brands fa-tumblr"></i></a>
-            <a href="https://reddit.com/user/yourhandle" target="_blank" aria-label="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
+            <a href="https://x.com/Ribbitrail" target="_blank" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://instagram.com/ribbitrail" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://threads.net/@ribbitrail" target="_blank" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://bsky.app/profile/ribbitrail.bsky.social" target="_blank" aria-label="BlueSky"><i class="fa-brands fa-bluesky"></i></a>
+            <a href="https://youtube.com/@ribbitrail" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com/@ribbitrail" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://pinterest.com/ribbitrail" target="_blank" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="https://tumblr.com/blog/ribbitrail" target="_blank" aria-label="Tumblr"><i class="fa-brands fa-tumblr"></i></a>
+            <a href="https://reddit.com/r/ribbitrail" target="_blank" aria-label="Reddit"><i class="fa-brands fa-reddit-alien"></i></a>
         </div>
     </div>
 
     <script>
         document.getElementById('waitlist-form').addEventListener('submit', function(event) {
-            // Notice: event.preventDefault() is removed so the form actually submits to Mailchimp
-
+            event.preventDefault(); 
+            
+            const form = event.target;
             const emailInput = document.getElementById('email-input');
             const successMessage = document.getElementById('success-message');
 
-            successMessage.classList.add('show');
-            
-            // We wait 100 milliseconds to clear the field so the browser has time to send the data to Mailchimp first
-            setTimeout(function() {
-                emailInput.value = '';
-            }, 100);
+            const email = encodeURIComponent(emailInput.value);
+            const honeypotName = form.querySelector('input[type="text"]').name;
+            const honeypotValue = encodeURIComponent(form.querySelector('input[type="text"]').value);
 
-            setTimeout(function() {
-                successMessage.classList.remove('show');
-            }, 2000);
+            let actionUrl = form.action.replace('/post?', '/post-json?');
+            actionUrl += `&EMAIL=${email}&${honeypotName}=${honeypotValue}&c=mailchimpCallback`;
+
+            const script = document.createElement('script');
+            script.src = actionUrl;
+            document.body.appendChild(script);
+
+            window.mailchimpCallback = function(response) {
+                if (response.result === 'success' || response.msg.includes('already subscribed')) {
+                    successMessage.textContent = "Successfully subscribed!";
+                } else {
+                    successMessage.textContent = "Oops! Something went wrong.";
+                }
+
+                successMessage.classList.add('show');
+                emailInput.value = '';
+
+                setTimeout(function() {
+                    successMessage.classList.remove('show');
+                }, 3000);
+
+                document.body.removeChild(script);
+                delete window.mailchimpCallback;
+            };
         });
     </script>
 
